@@ -1,0 +1,36 @@
+<h1>Edit this Blog</h1>
+
+<%= form_for(@portfolio_item) do |form| %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subtitle %>
+    <%= form.text_field :subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+
+  <div class="field">
+    <h3>Techniques Used:</h3>
+    <%= form.fields_for :techniques do |technique_form| %>
+      <li>
+        <%= technique_form.label :name %>
+        <%= technique_form.text_field :name %>
+      </li>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_portfolio_path(@portfolio_item) %> |
+<%= link_to 'Back', portfolios_path %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @portfolio_item.title %>
+</p>
+
+<p>
+  <strong>Subtitle:</strong>
+  <%= @portfolio_item.subtitle %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @portfolio_item.body %>
+</p>
+
+<p>
+  <strong>Main img:</strong>
+  <%= image_tag @portfolio_item.large_img %>
+</p>
+
+<hr>
+
+<strong> Techniques Used: </strong>
+	<% @portfolio_item.techniques.each do |technique| %>
+
+		<p> <%= technique.name %> </p>
+
+	<% end %>
+
+
+<%= link_to 'Edit', edit_portfolio_path(@portfolio_item) %> |
+<%= link_to 'Back', portfolios_path %>

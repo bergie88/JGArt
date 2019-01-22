@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   
+    <!--     Page Title     -->
+    <title><%= @page_title %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+    <!--     SEO information     -->
+    <meta name="keywords" content=<%= @seo_keywords %> />
+
+    <!--     Scripts    -->
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body class="landing page">
+
+    <body class="landing-page ">
+    <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="/">John Gates Art</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            <i class="material-icons">home</i> Home
+                        </a>
+                    </li>
+
+                     <li class="dropdown nav-item">
+                        <a href="portfolios" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                            <i class="material-icons">view_carousel</i> Portfolio
+                        </a>
+                        <div class="dropdown-menu dropdown-with-icons">
+                            <a href="portfolios" class="dropdown-item">
+                                <i class="material-icons">account_balance</i> All Items
+                            </a>
+
+                      <li class="nav-item">
+                        <a href="blogs" class="nav-link">
+                            <i class="material-icons">art_track</i> Blog
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="about" class="nav-link">
+                            <i class="material-icons">portrait</i> About John
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="contact" class="nav-link">
+                            <i class="material-icons">contact_support</i> Contact
+                        </a>
+                    </li>
+
+                     <li class="nav-item">
+                          <% if current_user.is_a?(User) %>
+                          <%= link_to "Logout", destroy_user_session_path, class:"nav-link", method: :delete %>
+                      </li>
+                          <% else %>
+                      <li class="nav-item">
+                            <%= link_to "Register", new_user_registration_path, class:"nav-link" %>
+                      </li>
+                      <li class ="nav-item">
+                            <%= link_to "Log In", new_user_session_path, class:"nav-link"  %>
+                      </li>
+                            <% end %>
+                               
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <%= yield %>
+
+
+
+    <footer class="footer ">
+        <div class="container">
+            <nav class="pull-left">
+                <ul>
+                    <li>
+                        <a href="about">
+                            About
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="portfolios">
+                            Portfolio
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="blogs">
+                            Blog
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+        </div>
+    </footer>
+
+        <div><%= link_to "Home", root_path %></div>
+        <div><%= link_to "Portfolio", portfolios_path %></div>
+        <div><%= link_to "Blog", blogs_path %></div>
+        <div><%= link_to "About", about_path %></div>
+        <div><%= link_to "Contact", contact_path %></div>    
+        
+
+
+    <% if session[:source] %>
+      <p>Thank you for visiting me from <%= session[:source] %></p>
+    <% end %>
+  </body>
+</html>
